@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "project": "project-margin-guard",
+  "settings": {
+    "currency": "USD",
+    "targetMargin": 25
+  },
+  "records": [
+    {
+      "id": "project-1",
+      "name": "Maple customer portal",
+      "fee": 10000,
+      "approvedChanges": 1000,
+      "plannedHours": 100,
+      "actualHours": 80,
+      "remainingHours": 40,
+      "hourlyCost": 50,
+      "expenses": 500,
+      "remainingExpenses": 500,
+      "unapprovedHours": 15
+    },
+    {
+      "id": "project-2",
+      "name": "River reporting dashboard",
+      "fee": 4000,
+      "approvedChanges": 0,
+      "plannedHours": 60,
+      "actualHours": 50,
+      "remainingHours": 30,
+      "hourlyCost": 50,
+      "expenses": 500,
+      "remainingExpenses": 0,
+      "unapprovedHours": 10
+    }
+  ]
+}
