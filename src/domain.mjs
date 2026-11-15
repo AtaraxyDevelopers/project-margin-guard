@@ -142,6 +142,21 @@ export const example = {
   ],
 };
 export function analyze(records, s) {
+  const belowTarget = new Set(
+    records
+      .filter((r) => {
+        const revenue = r.fee + r.approvedChanges;
+        const cost =
+          (r.actualHours + r.remainingHours) * r.hourlyCost +
+          r.expenses +
+          r.remainingExpenses;
+        return (
+          revenue === 0 || ((revenue - cost) / revenue) * 100 < s.targetMargin
+        );
+      })
+      .map((r) => r.id),
+  );
+
   const rows = records.map((r) => {
     const revenue = r.fee + r.approvedChanges,
       cost =
@@ -176,9 +191,7 @@ export function analyze(records, s) {
       ),
       metric(
         "Projects below target",
-        rows.filter(
-          (r) => r["Margin (%)"] === "N/A" || r["Margin (%)"] < s.targetMargin,
-        ).length,
+        rows.filter((r) => belowTarget.has(r.id)).length,
       ),
     ],
     notices: records

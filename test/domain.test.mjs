@@ -26,3 +26,31 @@ test("Business edge cases", () => {
     );
   })(example.records, example.settings, analyze, validateState);
 });
+
+test("A rounded percentage cannot hide a margin shortfall", () => {
+  const report = analyze(
+    [
+      {
+        ...example.records[0],
+        ...{
+          fee: 50,
+          approvedChanges: 0,
+          plannedHours: 1,
+          actualHours: 1,
+          remainingHours: 0,
+          hourlyCost: 40.001,
+          expenses: 0,
+          remainingExpenses: 0,
+          unapprovedHours: 0,
+        },
+      },
+    ],
+    { ...example.settings, ...{ targetMargin: 20 } },
+    config.asOf,
+  );
+  assert.equal(report.rows[0]["Margin (%)"], 20);
+  assert.equal(
+    report.metrics.find((m) => m.label === "Projects below target").value,
+    1,
+  );
+});
