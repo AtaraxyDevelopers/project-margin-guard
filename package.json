@@ -1,6 +1,6 @@
 {
   "name": "@ataraxydevelopers/project-margin-guard",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "description": "Spot scope creep and estimate the cost to finish before a project loses its margin.",
